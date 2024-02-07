@@ -13,7 +13,6 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long post_id;
-
     private String title;
 
     @Column(name = "description", length = 100000)
@@ -43,7 +42,7 @@ public class Post {
     }
 
     public void setId(Long id) {
-        this.post_id = id;
+        this.post_id = post_id;
     }
 
     public String getTitle() {
