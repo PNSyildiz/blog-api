@@ -109,7 +109,7 @@ public class PostController {
         return postRepository.save(existingPost);
     }
 
-    @PutMapping("/like/{id}")
+    @PutMapping("/like/{post_id}")
     public Post like(@PathVariable Long post_id, @RequestBody Post post){
         Post existingPost = postRepository.findById(post_id).orElseThrow();
         existingPost.setLikes(post.getLikes());

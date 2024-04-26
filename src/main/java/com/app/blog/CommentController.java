@@ -1,5 +1,6 @@
 package com.app.blog;
 
+import org.hibernate.annotations.Comments;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +19,13 @@ public class CommentController {
     @GetMapping("/comments")
     public List<Comment> getAllComments(){
         return commentRepository.findAll();
+    }
+
+    @PutMapping("comments/like/{comment_id}")
+    public Comment likeComment(@PathVariable Long comment_id, @RequestBody Comment comments){
+        Comment existingComment = commentRepository.findById(comment_id).orElseThrow();
+        existingComment.setLikes(comments.getLikes());
+        return commentRepository.save(existingComment);
     }
 
     @GetMapping("/post/{post_id}/comments")
